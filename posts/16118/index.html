@@ -6,15 +6,22 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Tag: 复制 | Hexo</title>
+  <title>MySQL主从复制 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://yoursite.com/tags/复制/index.html">
+  <meta name="description" content="关于主从复制 主要用途：实现读写分离,主写从读,即主服务器用于写操作,其他从服务器用于读操作。 注意事项：配置之前各服务器数据库信息必须一致，否则会失败。  原理 master将事件记录于二进制文件中 slave启动I/O线程监控master二进制文件,有改动则写入中继日志 slave将中继日志事件写入数据库中,实现同步  如下图：  配置这里不再赘述数据库的搭建与基础配置过程注意搭建之前数据库信">
+<meta name="keywords" content="数据库,主从,主备,复制,mysql">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MySQL主从复制">
+<meta property="og:url" content="http://yoursite.com/posts/16118/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="关于主从复制 主要用途：实现读写分离,主写从读,即主服务器用于写操作,其他从服务器用于读操作。 注意事项：配置之前各服务器数据库信息必须一致，否则会失败。  原理 master将事件记录于二进制文件中 slave启动I/O线程监控master二进制文件,有改动则写入中继日志 slave将中继日志事件写入数据库中,实现同步  如下图：  配置这里不再赘述数据库的搭建与基础配置过程注意搭建之前数据库信">
 <meta property="og:locale" content="default">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/00746hGily1g1v64ujcjxj30jj0an41z.jpg">
+<meta property="og:updated_time" content="2019-04-08T05:52:30.582Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hexo">
+<meta name="twitter:title" content="MySQL主从复制">
+<meta name="twitter:description" content="关于主从复制 主要用途：实现读写分离,主写从读,即主服务器用于写操作,其他从服务器用于读操作。 注意事项：配置之前各服务器数据库信息必须一致，否则会失败。  原理 master将事件记录于二进制文件中 slave启动I/O线程监控master二进制文件,有改动则写入中继日志 slave将中继日志事件写入数据库中,实现同步  如下图：  配置这里不再赘述数据库的搭建与基础配置过程注意搭建之前数据库信">
+<meta name="twitter:image" content="http://ww1.sinaimg.cn/large/00746hGily1g1v64ujcjxj30jj0an41z.jpg">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -138,90 +145,80 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-MySQL主从复制" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/posts/43511/" class="archive-article-date">
-  	<time datetime="2019-04-08T06:11:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-04-08</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/posts/43511/">数据库双主</a>
+    <h1 class="article-title" itemprop="name">
+      MySQL主从复制
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">数据库</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">主从</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">复制</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">mysql</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">双主</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/posts/16118/" class="archive-article-date">
+        
+        <a href="/posts/16118/" class="archive-article-date">
   	<time datetime="2019-04-08T05:51:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-04-08</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/posts/16118/">MySQL主从复制</a>
-    </h1>
-  
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="关于主从复制"><a href="#关于主从复制" class="headerlink" title="关于主从复制"></a>关于主从复制</h2><ul>
+<li>主要用途：实现读写分离,主写从读,即主服务器用于写操作,其他从服务器用于读操作。</li>
+<li>注意事项：配置之前各服务器数据库信息必须一致，否则会失败。</li>
+</ul>
+<h2 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h2><ol>
+<li>master将事件记录于二进制文件中</li>
+<li>slave启动I/O线程监控master二进制文件,有改动则写入中继日志</li>
+<li>slave将中继日志事件写入数据库中,实现同步</li>
+</ol>
+<p>如下图：</p>
+<p><img height="300px" src="http://ww1.sinaimg.cn/large/00746hGily1g1v64ujcjxj30jj0an41z.jpg"></p>
+<h3 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h3><p>这里不再赘述数据库的搭建与基础配置过程<br>注意搭建之前数据库信息必须一致,特别是各服务器存在不一样的数据库</p>
+<h5 id="环境："><a href="#环境：" class="headerlink" title="环境："></a>环境：</h5><p>CentOS7 + Mariadb</p>
+<h5 id="master："><a href="#master：" class="headerlink" title="master："></a>master：</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/my.cnf</span><br><span class="line">	[mysqld]</span><br><span class="line">		<span class="built_in">log</span>-bin=mysql-bin		<span class="comment">#开启二进制日志</span></span><br><span class="line">		server-id=1				<span class="comment">#设置server-id</span></span><br><span class="line">systemctl restart mariadb</span><br><span class="line">mysql -u root -p</span><br><span class="line">	CREATE USER <span class="string">'slave1'</span>@<span class="string">'192.168.191.129'</span> IDENTIFIED BY <span class="string">'slave1'</span>;		<span class="comment">#创建用户,从服务器通过此账号进行登录同步</span></span><br><span class="line">	GRANT REPLICATION SLAVE ON *.* TO <span class="string">'slave1'</span>@<span class="string">'192.168.191.129'</span>;		<span class="comment">#分配权限</span></span><br><span class="line">	flush privileges;		<span class="comment">#刷新权限</span></span><br><span class="line">	SHOW MASTER STATUS;		<span class="comment">#查看master状态</span></span><br></pre></td></tr></table></figure>
+<h5 id="slave"><a href="#slave" class="headerlink" title="slave:"></a>slave:</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/my.cnf</span><br><span class="line">	[mysqld]</span><br><span class="line">		server-id=2		<span class="comment">#设置server-id，必须唯一</span></span><br><span class="line">systemctl restart mariadb</span><br><span class="line">mysql -u root -p</span><br><span class="line">	CHANGE MASTER TO </span><br><span class="line">		MASTER_HOST=<span class="string">'192.168.191.128'</span>,			<span class="comment">#master的ip</span></span><br><span class="line">		MASTER_USER=<span class="string">'slave1'</span>,</span><br><span class="line">		MASTER_PASSWORD=<span class="string">'slave1'</span>,	</span><br><span class="line">		MASTER_LOG_FILE=<span class="string">'mysql-bin.000003'</span>,		<span class="comment">#master状态中查看(SHOW MASTER STATUS;)</span></span><br><span class="line">		MASTER_LOG_POS=73;						<span class="comment">#master状态中查看(SHOW MASTER STATUS;)</span></span><br><span class="line">	start slave;			<span class="comment">#开启slave进程</span></span><br><span class="line">	show slave status\G;	<span class="comment">#查看slave状态(I/O进程和SQL进程都为YES则成功)</span></span><br></pre></td></tr></table></figure>
+<h5 id="补充"><a href="#补充" class="headerlink" title="补充"></a>补充</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#指定数据库同步</span></span><br><span class="line">vim /etc/my.cnf</span><br><span class="line">	[mysqld]</span><br><span class="line">		<span class="comment">#不同步这些数据库</span></span><br><span class="line">			binlog-ignore-db = mysql  </span><br><span class="line">			binlog-ignore-db = <span class="built_in">test</span></span><br><span class="line">		<span class="comment">#或者只同步这些数据库</span></span><br><span class="line">			binlog-do-db = game</span><br></pre></td></tr></table></figure>
+      
 
-        <div class="article-info info-on-right">
-          
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>支持我一下吧~<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="http://ww1.sinaimg.cn/large/006vXjpTgy1g1f4il8589j30af0bwmxl.jpg">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="http://ww1.sinaimg.cn/large/006vXjpTgy1g1f4iu8y3fj309m09jjrz.jpg">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -249,19 +246,115 @@
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/posts/16118/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
+  
+    <a href="/posts/43511/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          数据库双主
+        
+      </div>
+    </a>
   
   
-    </div></section>
+    <a href="/posts/21834/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">top命令详解</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+  
+  
   
 
-    
+  
+
+  
+
+  
 
 
           </div>
@@ -284,9 +377,9 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,
