@@ -6,22 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>浅谈组播 | Hexo</title>
+  <title>各排序算法介绍与代码实现 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="什么是组播? 先说单播，单播的接收者只有一个再说广播，广播的接收者是所有设备简单地说，组播的接收者是一组，由设备自行选择是否接收。  打个比方，公司高层在开视频会议，那所有的高层人员都必须接收视频。而非高层人员则不必理会。">
-<meta name="keywords" content="组播,IGMP,PIM,组成员管理协议,RPF检查">
+  <meta name="description" content="目录 选择排序 冒泡排序 直接插入排序 折半插入排序 快速排序 排序二叉树 堆排序 希尔排序 归并排序">
+<meta name="keywords" content="排序,算法,代码,选择,冒泡">
 <meta property="og:type" content="article">
-<meta property="og:title" content="浅谈组播">
-<meta property="og:url" content="http://yoursite.com/posts/28385/index.html">
+<meta property="og:title" content="各排序算法介绍与代码实现">
+<meta property="og:url" content="http://yoursite.com/posts/27340/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="什么是组播? 先说单播，单播的接收者只有一个再说广播，广播的接收者是所有设备简单地说，组播的接收者是一组，由设备自行选择是否接收。  打个比方，公司高层在开视频会议，那所有的高层人员都必须接收视频。而非高层人员则不必理会。">
+<meta property="og:description" content="目录 选择排序 冒泡排序 直接插入排序 折半插入排序 快速排序 排序二叉树 堆排序 希尔排序 归并排序">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="http://ww1.sinaimg.cn/large/00746hGily1g1yivfqxqdj30fe09sdg8.jpg">
-<meta property="og:updated_time" content="2019-04-11T03:33:57.347Z">
+<meta property="og:updated_time" content="2019-04-14T03:25:08.177Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="浅谈组播">
-<meta name="twitter:description" content="什么是组播? 先说单播，单播的接收者只有一个再说广播，广播的接收者是所有设备简单地说，组播的接收者是一组，由设备自行选择是否接收。  打个比方，公司高层在开视频会议，那所有的高层人员都必须接收视频。而非高层人员则不必理会。">
-<meta name="twitter:image" content="http://ww1.sinaimg.cn/large/00746hGily1g1yivfqxqdj30fe09sdg8.jpg">
+<meta name="twitter:title" content="各排序算法介绍与代码实现">
+<meta name="twitter:description" content="目录 选择排序 冒泡排序 直接插入排序 折半插入排序 快速排序 排序二叉树 堆排序 希尔排序 归并排序">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -145,158 +143,81 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-浅谈组播" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-各排序算法介绍与代码实现" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      浅谈组播
+      各排序算法介绍与代码实现
     </h1>
   
 
         
-        <a href="/posts/28385/" class="archive-article-date">
-  	<time datetime="2019-04-11T03:27:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-04-11</time>
+        <a href="/posts/27340/" class="archive-article-date">
+  	<time datetime="2019-04-14T03:24:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-04-14</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="什么是组播"><a href="#什么是组播" class="headerlink" title="什么是组播?"></a>什么是组播?</h3><blockquote>
-<p>先说单播，单播的接收者只有一个<br>再说广播，广播的接收者是所有设备<br>简单地说，组播的接收者是一组，由设备自行选择是否接收。</p>
-<blockquote>
-<p>打个比方，公司高层在开视频会议，那所有的高层人员都必须接收视频。<br>而非高层人员则不必理会。</p>
-</blockquote>
-</blockquote>
+        <h3 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h3><ol>
+<li><a href="#1">选择排序</a></li>
+<li><a href="#2">冒泡排序</a></li>
+<li><a href="#3">直接插入排序</a></li>
+<li><a href="#4">折半插入排序</a></li>
+<li><a href="#5">快速排序</a></li>
+<li><a href="#6">排序二叉树</a></li>
+<li><a href="#7">堆排序</a></li>
+<li><a href="#8">希尔排序</a></li>
+<li><a href="#9">归并排序</a></li>
+</ol>
 <a id="more"></a>
-<h3 id="组播IP地址（D类地址）"><a href="#组播IP地址（D类地址）" class="headerlink" title="组播IP地址（D类地址）"></a>组播IP地址（D类地址）</h3><blockquote>
-<p>224.0.0.1        #所有主机地址(包括路由器)<br>224.0.0.2        #所有组播路由器<br>224.0.0.9        #RIPv2路由器<br>224.0.0.5        #OSPF路由器组播地址<br>224.0.0.6        #OSPF DR组播地址</p>
-</blockquote>
-<h3 id="组播MAC地址"><a href="#组播MAC地址" class="headerlink" title="组播MAC地址"></a>组播MAC地址</h3><blockquote>
-<p>组播MAC地址:第8位为1<br>单播MAC地址:第8位为0</p>
-</blockquote>
-<h3 id="组播IP与MAC映射"><a href="#组播IP与MAC映射" class="headerlink" title="组播IP与MAC映射"></a>组播IP与MAC映射</h3><blockquote>
-<p>01:00:5E + (0 + IP后23位映射)</p>
-</blockquote>
-<h3 id="名词解释"><a href="#名词解释" class="headerlink" title="名词解释"></a>名词解释</h3><blockquote>
-<p>第一跳路由器：直连组播源路由器<br>最后一条路由器：直连组成员路由器</p>
-</blockquote>
-<h3 id="组播结构"><a href="#组播结构" class="headerlink" title="组播结构"></a>组播结构</h3><blockquote>
-<p>组播源</p>
 <blockquote>
-<p>无需任何协议</p>
+<p>小贴士：<br>下面默认最小到大排序哦,可以根据需要修改。<br>默认以数组为例，也可以应用到链表和其他数据结构里呢！</p>
 </blockquote>
-<p>组播路由协议</p>
-<blockquote>
-<p>PIM等协议<br>用在组播分发树中</p>
+<h3 id="选择排序"><a href="#选择排序" class="headerlink" title="选择排序"></a><a id="1">选择排序</a></h3><blockquote>
+<p>介绍<br>1.遍历一个数组,选出最小的一个放在第一个位置。<br>2.以第二到最后一个元素作为一个新数组，做同样的事。直到剩下一个元素。</p>
 </blockquote>
-<p>组管理协议</p>
-<blockquote>
-<p>IGMP协议<br>使用在接收者和最后一跳路由器之间</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">代码</span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T2&gt;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">sort</span><span class="params">(T2*p, <span class="keyword">int</span> num)</span>              <span class="comment">//p为数组首元素地址，num为元素数量</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	T2 t;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; num - <span class="number">1</span>; i++)</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> j = i + <span class="number">1</span>; j &lt; num; j++)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">if</span> (p[i] &gt; p[j])</span><br><span class="line">				t = p[i], p[i] = p[j], p[j] = t;</span><br><span class="line">		&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><br></p>
+<h3 id="冒泡排序"><a href="#冒泡排序" class="headerlink" title="冒泡排序"></a><a id="2">冒泡排序</a></h3><blockquote>
+<p>介绍<br>1.两两比较数组元素，较大者后移一位，经过一轮遍历后，最大值则冒泡到最后一位。<br>2.以第一位到倒数第二位为一个新数组，做同样的事，知道剩下一个元素。</p>
 </blockquote>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">代码</span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T1&gt;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">sort</span><span class="params">(T1*p, <span class="keyword">int</span> num)</span>            <span class="comment">//p为数组首元素地址，num为元素数量</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	T1 t;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = num - <span class="number">1</span>; i &gt;= <span class="number">1</span>; i--)</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; i; j++)</span><br><span class="line">			<span class="keyword">if</span> (p[j] &gt; p[j+<span class="number">1</span>])</span><br><span class="line">				t = p[j], p[j] = p[j + <span class="number">1</span>], p[j + <span class="number">1</span>] = t;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><br></p>
+<h3 id="直接插入排序"><a href="#直接插入排序" class="headerlink" title="直接插入排序"></a><a id="3">直接插入排序</a></h3><blockquote>
+<p>介绍<br>1.以第一位元素为一个有序数组(只有一个元素的数组)，把第二个元素按大小顺序插入指定位置，插入位之后的元素依次后移一位。<br>2.以第一和第二个元素作为一个有序数组，把第三个元素做同样的事情。以此类推，直到将最后一个元素插入按顺序插入指定位置。</p>
 </blockquote>
-<h3 id="PIM协议"><a href="#PIM协议" class="headerlink" title="PIM协议"></a>PIM协议</h3><h5 id="1-分类"><a href="#1-分类" class="headerlink" title="1.分类"></a>1.分类</h5><ul>
-<li><p>PIM-DM</p>
-<blockquote>
-<p>关于PIM-DM</p>
-<blockquote>
-<p>密集模式,成员很多,所以组播源主动Push，即主动发送组播数据<br>组播数据转发至各个角落,若无需该组播数据再进行剪枝操作</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">代码</span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T2&gt;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">insertion_sort</span><span class="params">(T2 a[], <span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span> i, j;</span><br><span class="line">	T2 v;</span><br><span class="line">	<span class="keyword">for</span> (i = <span class="number">1</span>; i&lt;n; i++) &#123;</span><br><span class="line">		<span class="keyword">for</span> (v = a[i], j = i - <span class="number">1</span>; j &gt;= <span class="number">0</span> &amp;&amp; v&lt;a[j]; j--)</span><br><span class="line">			a[j + <span class="number">1</span>] = a[j];</span><br><span class="line">		a[j + <span class="number">1</span>] = v;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><br></p>
+<h3 id="折半插入排序"><a href="#折半插入排序" class="headerlink" title="折半插入排序"></a><a id="4">折半插入排序</a></h3><blockquote>
+<p>介绍<br>直接插入排序是对有序数组进行遍历，以找到应插入的位置。而折半插入排序是使用二分法查找应插入的位置。可以节省时间，降低时间复杂度。</p>
 </blockquote>
-<p>扩散</p>
-<blockquote>
-<p>SPT收敛完成后,组播流量发送到各个角落</p>
+<p><br></p>
+<h3 id="快速排序"><a href="#快速排序" class="headerlink" title="快速排序"></a><a id="5">快速排序</a></h3><blockquote>
+<p>介绍<br>1.以第一个元素为中间值，对数组进行遍历，将比这个中间值小的放在中间值的左边，同理，将比这个中间值大的放在它的右边。<br>2.将此中间值左右两边作为两个新数组，做同样的事情，知道左右两边没有元素或者只有一个元素。</p>
 </blockquote>
-<p>剪枝</p>
-<blockquote>
-<p>不需要组播流量的路由器周期性向上游发送Prune报文</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span>&lt;<span class="class"><span class="keyword">class</span> <span class="title">ElemType</span>&gt;</span></span><br><span class="line"><span class="class"><span class="title">void</span> <span class="title">QuickSort</span>(<span class="title">ElemType</span> <span class="title">elem</span>[], <span class="title">int</span> <span class="title">low</span>, <span class="title">int</span> <span class="title">high</span>)   //<span class="title">low</span>为起始元素位置，<span class="title">high</span>为结束元素位置</span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">	<span class="keyword">if</span> (low &gt;= high)</span><br><span class="line">		<span class="keyword">return</span>;</span><br><span class="line">	<span class="keyword">int</span> i = low, j = high;</span><br><span class="line">	ElemType e = elem[i];</span><br><span class="line">	<span class="keyword">for</span> (; i &lt; j;)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">for</span> (; i&lt;j; j--)</span><br><span class="line">			<span class="keyword">if</span> (elem[j]&lt;e)</span><br><span class="line">				<span class="keyword">break</span>;</span><br><span class="line">		<span class="keyword">if</span> (i &lt; j)</span><br><span class="line">			elem[i++] = elem[j];</span><br><span class="line">		<span class="keyword">for</span> (; i&lt;j; i++)</span><br><span class="line">			<span class="keyword">if</span> (elem[i]&gt;e)</span><br><span class="line">				<span class="keyword">break</span>;</span><br><span class="line">		<span class="keyword">if</span> (i &lt; j)</span><br><span class="line">			elem[j--] = elem[i];</span><br><span class="line">	&#125;</span><br><span class="line">	elem[i] = e;</span><br><span class="line">	QuickSort(elem, low, i - <span class="number">1</span>);</span><br><span class="line">	QuickSort(elem, i + <span class="number">1</span>, high);</span><br><span class="line">	<span class="keyword">return</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><br></p>
+<h3 id="排序二叉树"><a href="#排序二叉树" class="headerlink" title="排序二叉树"></a><a id="6">排序二叉树</a></h3><blockquote>
+<p>介绍<br>1.以第一个元素作为根，遍历这个数组。将比根小的元素作为根的左孩子，比根大的作为根的右孩子。<br>2.遍历过程中若已有孩子占位，则以该孩子为根，进行递归。</p>
 </blockquote>
-<p>嫁接</p>
-<blockquote>
-<p>出现新接收者,最后一跳路由器向上游发送PIM-Graft,将自己嫁接进SPT</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">template</span>&lt;<span class="class"><span class="keyword">class</span> <span class="title">ElemType</span>&gt;</span></span><br><span class="line"><span class="class"><span class="title">void</span> <span class="title">display</span>(<span class="title">ElemType</span> &amp;<span class="title">e</span>)</span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; e &lt;&lt; <span class="string">"  "</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">template</span>&lt;<span class="class"><span class="keyword">class</span> <span class="title">ElemType</span>&gt;</span></span><br><span class="line"><span class="class"><span class="title">struct</span> <span class="title">BinSortTreeNode</span>&#123;</span></span><br><span class="line">	ElemType data;</span><br><span class="line">	BinSortTreeNode *left, *right;</span><br><span class="line">	BinSortTreeNode()</span><br><span class="line">	&#123;</span><br><span class="line">		left = right = <span class="literal">NULL</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	BinSortTreeNode(ElemType d, BinSortTreeNode *l = <span class="literal">NULL</span>, BinSortTreeNode *r = <span class="literal">NULL</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		data = d;</span><br><span class="line">		left = l;</span><br><span class="line">		right = r;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">template</span>&lt;<span class="class"><span class="keyword">class</span> <span class="title">ElemType</span>&gt;</span></span><br><span class="line"><span class="class"><span class="title">class</span> <span class="title">BinSortTree</span>&#123;</span></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">	BinSortTreeNode&lt;ElemType&gt; *root;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	BinSortTree()</span><br><span class="line">	&#123;</span><br><span class="line">		root = <span class="literal">NULL</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	BinSortTreeNode&lt;ElemType&gt; *GetRoot()</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">return</span> root;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">Insert</span><span class="params">(ElemType d, BinSortTreeNode&lt;ElemType&gt; *p)</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		BinSortTreeNode&lt;ElemType&gt; *temp = <span class="keyword">new</span> BinSortTreeNode&lt;ElemType&gt;(d);</span><br><span class="line">		<span class="keyword">if</span> (!temp)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="built_in">cout</span> &lt;&lt; <span class="string">"内存申请失败"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">			<span class="built_in">exit</span>(<span class="number">-1</span>);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span> (root == <span class="literal">NULL</span>)</span><br><span class="line">		&#123;</span><br><span class="line">			root = temp; <span class="keyword">return</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span> (p-&gt;data == d)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="built_in">cout</span> &lt;&lt; <span class="string">"数据已存在！"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">			<span class="keyword">delete</span> temp;</span><br><span class="line">			<span class="keyword">return</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span> (d &lt; p-&gt;data)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">if</span> (p-&gt;left == <span class="literal">NULL</span>)</span><br><span class="line">			&#123;</span><br><span class="line">				p-&gt;left = temp; <span class="keyword">return</span>;</span><br><span class="line">			&#125;</span><br><span class="line">			Insert(d, p-&gt;left);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span></span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">if</span> (p-&gt;right == <span class="literal">NULL</span>)</span><br><span class="line">			&#123;</span><br><span class="line">				p-&gt;right = temp; <span class="keyword">return</span>;</span><br><span class="line">			&#125;</span><br><span class="line">			Insert(d, p-&gt;right);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">PreTraverse</span><span class="params">(BinSortTreeNode&lt;ElemType&gt; *p, <span class="keyword">void</span> visit(ElemType &amp;e) = display)</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		<span class="keyword">if</span> (p == <span class="literal">NULL</span>)</span><br><span class="line">			<span class="keyword">return</span>;</span><br><span class="line">		visit(p-&gt;data);</span><br><span class="line">		PreTraverse(p-&gt;left);</span><br><span class="line">		PreTraverse(p-&gt;right);</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">InTraverse</span><span class="params">(BinSortTreeNode&lt;ElemType&gt; *p, <span class="keyword">void</span> visit(ElemType &amp;e) = display)</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		<span class="keyword">if</span> (p == <span class="literal">NULL</span>)</span><br><span class="line">			<span class="keyword">return</span>;</span><br><span class="line">		InTraverse(p-&gt;left);</span><br><span class="line">		visit(p-&gt;data);</span><br><span class="line">		InTraverse(p-&gt;right);</span><br><span class="line">		<span class="keyword">return</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">PostTraverse</span><span class="params">(BinSortTreeNode&lt;ElemType&gt; *p, <span class="keyword">void</span> visit(ElemType &amp;e) = display)</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		<span class="keyword">if</span> (p == <span class="literal">NULL</span>)</span><br><span class="line">			<span class="keyword">return</span>;</span><br><span class="line">		PostTraverse(p-&gt;left);</span><br><span class="line">		PostTraverse(p-&gt;right);</span><br><span class="line">		visit(p-&gt;data);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">bool</span> <span class="title">Find_help</span><span class="params">(ElemType d, BinSortTreeNode&lt;ElemType&gt; *p)</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		<span class="keyword">if</span> (p == <span class="literal">NULL</span>)</span><br><span class="line">			<span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">		<span class="keyword">if</span> (p-&gt;data == d)</span><br><span class="line">			<span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">		<span class="keyword">return</span> (Find_help(d, p-&gt;left) || Find_help(d, p-&gt;right));</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">Find</span><span class="params">(ElemType d, BinSortTreeNode&lt;ElemType&gt; *p)</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		<span class="keyword">if</span> (Find_help(d, root))</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="built_in">cout</span> &lt;&lt; <span class="string">"查找成功！"</span> &lt;&lt; <span class="built_in">endl</span>; <span class="keyword">return</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; <span class="string">"查找失败！"</span> &lt;&lt; <span class="built_in">endl</span>; <span class="keyword">return</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	BinSortTree&lt;<span class="keyword">int</span>&gt; B;</span><br><span class="line">	<span class="keyword">int</span> e;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"插入数据，-1结束："</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	<span class="keyword">for</span> (;;)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">cin</span> &gt;&gt; e;</span><br><span class="line">		<span class="keyword">if</span> (e == <span class="number">-1</span>)</span><br><span class="line">			<span class="keyword">break</span>;</span><br><span class="line">		B.Insert(e, B.GetRoot());</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"先序遍历："</span>; B.PreTraverse(B.GetRoot()); <span class="built_in">cout</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"中序遍历："</span>; B.InTraverse(B.GetRoot()); <span class="built_in">cout</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"后序遍历："</span>; B.PostTraverse(B.GetRoot()); <span class="built_in">cout</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"请输入要查找的数："</span>; <span class="built_in">cin</span> &gt;&gt; e;</span><br><span class="line">	B.Find(e, B.GetRoot());</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"请输入要查找的数："</span>; <span class="built_in">cin</span> &gt;&gt; e;</span><br><span class="line">	B.Find(e, B.GetRoot());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><br></p>
+<h3 id="堆排序"><a href="#堆排序" class="headerlink" title="堆排序"></a><a id="7">堆排序</a></h3><blockquote>
+<p>介绍<br>1.利用堆的特点，将所有元素最小值摘选出来。<br>2.将剩下的元素做同样的事情，最后即可得到从小到大的排序。</p>
 </blockquote>
+<p><br></p>
+<h3 id="希尔排序"><a href="#希尔排序" class="headerlink" title="希尔排序"></a><a id="8">希尔排序</a></h3><blockquote>
+<p>介绍<br>1.设置步长，假设此处步长为3。<br>2.将元素0，3，6，9……作为一个数组进行排序，排序算法可以自行选择。<br>3.将元素1，4，7，10……作为一个数组进行排序。<br>4.将元素2，5，8，11……作为一个数组进行排序。<br>5.步长减1，做同样的事情，直到步长为1，再做最后一次排序。<br>这个算法到最后数组基本有序，选择好算法可以一定程度上节省时间。</p>
 </blockquote>
-</li>
-<li><p>PIM-SM</p>
-<blockquote>
-<p>关于PIM-SM</p>
-<blockquote>
-<p>稀疏模式,成员很少,以至于不知道有没有成员。所以为被动模式,组成员向路由器Pull<br>假定不存在接受者,通过Join申请</p>
-</blockquote>
-</blockquote>
-</li>
-</ul>
-<h5 id="2-构建组播分发树"><a href="#2-构建组播分发树" class="headerlink" title="2.构建组播分发树"></a>2.构建组播分发树</h5><p>组播源或RP为根,叶子节点为组成员</p>
-<blockquote>
-<p>SPT</p>
-<blockquote>
-<p>最短路径树<br>组播源为根</p>
-</blockquote>
-<p>RPT</p>
-<blockquote>
-<p>共享树<br>多组播源<br>可使用RP为根,RP为共享汇聚点<br>RP为一台路由器，由它接收组播源数据包，再作为根转发至其他成员</p>
-</blockquote>
-</blockquote>
-<h5 id="3-维护一张组播前传表-即组播路由表"><a href="#3-维护一张组播前传表-即组播路由表" class="headerlink" title="3.维护一张组播前传表    #即组播路由表"></a>3.维护一张组播前传表    #即组播路由表</h5><blockquote>
-<p>两种路由表项(S为组播源,G为组播组)</p>
-<blockquote>
-<p>(S,G)        #由此项指导报文转发<br>(*,G)        #只知道组播组,则根据上游创建(S,G)</p>
-</blockquote>
-</blockquote>
-<h5 id="4-RPF检查"><a href="#4-RPF检查" class="headerlink" title="4.RPF检查"></a>4.RPF检查</h5><blockquote>
-<p>防止出现组播环路<br>只有从上游接口收到数据包才使用,否则丢弃<br>借助单播路由进行RPF检查</p>
-</blockquote>
-<h3 id="IGMP"><a href="#IGMP" class="headerlink" title="IGMP"></a>IGMP</h3><ul>
-<li><p>关于IGMP</p>
-<blockquote>
-<p>采用IP封装<br>协议号为2<br>TTL通常为1</p>
-</blockquote>
-</li>
-<li><p>版本</p>
-</li>
-</ul>
-<ol>
-<li><p>IGMPv1</p>
-<blockquote>
-<p>无离开信息,采用超时机制发现无成员的组</p>
-</blockquote>
-</li>
-<li><p>IGMPv2</p>
-</li>
-</ol>
-<p>重点讲一讲GMPv2的报文类型</p>
-<blockquote>
-<p>普遍组查询</p>
-<blockquote>
-<p>查询器周期性查询组播组</p>
-</blockquote>
-<p>特定组查询</p>
-<blockquote>
-<p>查询器查询该组有无成员</p>
-</blockquote>
-<p>成员关系报告</p>
-<blockquote>
-<p>主机申请加入或者对查询报文进行应答</p>
-</blockquote>
-<p>版本1成员关系报告</p>
-<blockquote>
-<p>用于兼容IGMPv1</p>
-</blockquote>
-<p>成员离开报文</p>
-<blockquote>
-<p>主机发送该报文,宣告离开组播组</p>
-</blockquote>
-</blockquote>
-<ol start="3">
-<li>IGMPv3<blockquote>
-<p>多组播源情况下,能够明确的要求接收或不接收某特定组播源S发出的组播信息,否则都要接收</p>
-</blockquote>
-</li>
-</ol>
-<blockquote>
-<p>举个例子：<br>网络中存在S1和S2两个组播源，均向组播组G发送组播报文，User仅希望接收从组播源S1发送组播组G的信息，典型组网如下图。<br>如果主机和路由器之间应该用IGMPv1或IGMv2，User加入到某组播组G后，将同时接收到来自组播源S1和S2的组播信息。如果采用IGMPv3，主机User可以选择紧接收S1组播信息。<br><img src="http://ww1.sinaimg.cn/large/00746hGily1g1yivfqxqdj30fe09sdg8.jpg"></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T3&gt;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">shell_sort</span><span class="params">(T3 a[], <span class="keyword">int</span> n, <span class="keyword">int</span> d)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> i, j;</span><br><span class="line">	T3 temp;</span><br><span class="line">	<span class="keyword">for</span> (; d &gt;= <span class="number">1</span>; d = d <span class="number">-1</span> )</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">for</span> (i = d; i &lt; n; i++)</span><br><span class="line">		&#123;</span><br><span class="line">			temp = a[i];</span><br><span class="line">			<span class="keyword">for</span> (j = i - d; (j &gt;= <span class="number">0</span>) &amp;&amp; (a[j] &gt; temp); j = j - d)</span><br><span class="line">			&#123;</span><br><span class="line">				a[j + d] = a[j];</span><br><span class="line">			&#125;</span><br><span class="line">			a[j + d] = temp;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><br></p>
+<h3 id="归并排序"><a href="#归并排序" class="headerlink" title="归并排序"></a><a id="9">归并排序</a></h3><blockquote>
+<p>介绍<br>此算法将两个有序数组合并为一个数组<br>1.设置两个游标，分别指向两个数组的第一个元素。<br>2.取两个游标指向元素中的较小值，取出放在新数组中，此游标加1。<br>2.做同样的事情，直到一个数组已无元素，那么将另一个数组剩下的元素复制到新数组中即可。</p>
 </blockquote>
 
       
@@ -342,23 +263,23 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">组播</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">排序</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">IGMP</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">算法</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">PIM</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">代码</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">组成员管理协议</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">选择</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">RPF检查</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">冒泡</a>
         		</li>
       		
 		</ul>
@@ -414,7 +335,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/posts/28385/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/posts/27340/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -428,18 +349,9 @@
   
 <nav id="article-nav">
   
-    <a href="/posts/27340/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          各排序算法介绍与代码实现
-        
-      </div>
-    </a>
   
-  
-    <a href="/posts/22882/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Linux开机启动三种方式</div>
+    <a href="/posts/28385/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">浅谈组播</div>
       <i class="icon-circle-right"></i>
     </a>
   

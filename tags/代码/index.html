@@ -6,22 +6,15 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>浅谈组播 | Hexo</title>
+  <title>Tag: 代码 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="什么是组播? 先说单播，单播的接收者只有一个再说广播，广播的接收者是所有设备简单地说，组播的接收者是一组，由设备自行选择是否接收。  打个比方，公司高层在开视频会议，那所有的高层人员都必须接收视频。而非高层人员则不必理会。">
-<meta name="keywords" content="组播,IGMP,PIM,组成员管理协议,RPF检查">
-<meta property="og:type" content="article">
-<meta property="og:title" content="浅谈组播">
-<meta property="og:url" content="http://yoursite.com/posts/28385/index.html">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://yoursite.com/tags/代码/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="什么是组播? 先说单播，单播的接收者只有一个再说广播，广播的接收者是所有设备简单地说，组播的接收者是一组，由设备自行选择是否接收。  打个比方，公司高层在开视频会议，那所有的高层人员都必须接收视频。而非高层人员则不必理会。">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="http://ww1.sinaimg.cn/large/00746hGily1g1yivfqxqdj30fe09sdg8.jpg">
-<meta property="og:updated_time" content="2019-04-11T03:33:57.347Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="浅谈组播">
-<meta name="twitter:description" content="什么是组播? 先说单播，单播的接收者只有一个再说广播，广播的接收者是所有设备简单地说，组播的接收者是一组，由设备自行选择是否接收。  打个比方，公司高层在开视频会议，那所有的高层人员都必须接收视频。而非高层人员则不必理会。">
-<meta name="twitter:image" content="http://ww1.sinaimg.cn/large/00746hGily1g1yivfqxqdj30fe09sdg8.jpg">
+<meta name="twitter:title" content="Hexo">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -145,334 +138,76 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-浅谈组播" class="article article-type-post " itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
+            
   
-    <h1 class="article-title" itemprop="name">
-      浅谈组播
+  
+    
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2019" class="archive-year">2019</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      	<div class="article-meta">
+	      	<a href="/posts/27340/" class="archive-article-date">
+  	<time datetime="2019-04-14T03:24:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-04-14</time>
+</a>
+        </div>
+    	 
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/posts/27340/">各排序算法介绍与代码实现</a>
     </h1>
   
 
-        
-        <a href="/posts/28385/" class="archive-article-date">
-  	<time datetime="2019-04-11T03:27:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-04-11</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="什么是组播"><a href="#什么是组播" class="headerlink" title="什么是组播?"></a>什么是组播?</h3><blockquote>
-<p>先说单播，单播的接收者只有一个<br>再说广播，广播的接收者是所有设备<br>简单地说，组播的接收者是一组，由设备自行选择是否接收。</p>
-<blockquote>
-<p>打个比方，公司高层在开视频会议，那所有的高层人员都必须接收视频。<br>而非高层人员则不必理会。</p>
-</blockquote>
-</blockquote>
-<a id="more"></a>
-<h3 id="组播IP地址（D类地址）"><a href="#组播IP地址（D类地址）" class="headerlink" title="组播IP地址（D类地址）"></a>组播IP地址（D类地址）</h3><blockquote>
-<p>224.0.0.1        #所有主机地址(包括路由器)<br>224.0.0.2        #所有组播路由器<br>224.0.0.9        #RIPv2路由器<br>224.0.0.5        #OSPF路由器组播地址<br>224.0.0.6        #OSPF DR组播地址</p>
-</blockquote>
-<h3 id="组播MAC地址"><a href="#组播MAC地址" class="headerlink" title="组播MAC地址"></a>组播MAC地址</h3><blockquote>
-<p>组播MAC地址:第8位为1<br>单播MAC地址:第8位为0</p>
-</blockquote>
-<h3 id="组播IP与MAC映射"><a href="#组播IP与MAC映射" class="headerlink" title="组播IP与MAC映射"></a>组播IP与MAC映射</h3><blockquote>
-<p>01:00:5E + (0 + IP后23位映射)</p>
-</blockquote>
-<h3 id="名词解释"><a href="#名词解释" class="headerlink" title="名词解释"></a>名词解释</h3><blockquote>
-<p>第一跳路由器：直连组播源路由器<br>最后一条路由器：直连组成员路由器</p>
-</blockquote>
-<h3 id="组播结构"><a href="#组播结构" class="headerlink" title="组播结构"></a>组播结构</h3><blockquote>
-<p>组播源</p>
-<blockquote>
-<p>无需任何协议</p>
-</blockquote>
-<p>组播路由协议</p>
-<blockquote>
-<p>PIM等协议<br>用在组播分发树中</p>
-</blockquote>
-<p>组管理协议</p>
-<blockquote>
-<p>IGMP协议<br>使用在接收者和最后一跳路由器之间</p>
-</blockquote>
-</blockquote>
-<h3 id="PIM协议"><a href="#PIM协议" class="headerlink" title="PIM协议"></a>PIM协议</h3><h5 id="1-分类"><a href="#1-分类" class="headerlink" title="1.分类"></a>1.分类</h5><ul>
-<li><p>PIM-DM</p>
-<blockquote>
-<p>关于PIM-DM</p>
-<blockquote>
-<p>密集模式,成员很多,所以组播源主动Push，即主动发送组播数据<br>组播数据转发至各个角落,若无需该组播数据再进行剪枝操作</p>
-</blockquote>
-<p>扩散</p>
-<blockquote>
-<p>SPT收敛完成后,组播流量发送到各个角落</p>
-</blockquote>
-<p>剪枝</p>
-<blockquote>
-<p>不需要组播流量的路由器周期性向上游发送Prune报文</p>
-</blockquote>
-<p>嫁接</p>
-<blockquote>
-<p>出现新接收者,最后一跳路由器向上游发送PIM-Graft,将自己嫁接进SPT</p>
-</blockquote>
-</blockquote>
-</li>
-<li><p>PIM-SM</p>
-<blockquote>
-<p>关于PIM-SM</p>
-<blockquote>
-<p>稀疏模式,成员很少,以至于不知道有没有成员。所以为被动模式,组成员向路由器Pull<br>假定不存在接受者,通过Join申请</p>
-</blockquote>
-</blockquote>
-</li>
-</ul>
-<h5 id="2-构建组播分发树"><a href="#2-构建组播分发树" class="headerlink" title="2.构建组播分发树"></a>2.构建组播分发树</h5><p>组播源或RP为根,叶子节点为组成员</p>
-<blockquote>
-<p>SPT</p>
-<blockquote>
-<p>最短路径树<br>组播源为根</p>
-</blockquote>
-<p>RPT</p>
-<blockquote>
-<p>共享树<br>多组播源<br>可使用RP为根,RP为共享汇聚点<br>RP为一台路由器，由它接收组播源数据包，再作为根转发至其他成员</p>
-</blockquote>
-</blockquote>
-<h5 id="3-维护一张组播前传表-即组播路由表"><a href="#3-维护一张组播前传表-即组播路由表" class="headerlink" title="3.维护一张组播前传表    #即组播路由表"></a>3.维护一张组播前传表    #即组播路由表</h5><blockquote>
-<p>两种路由表项(S为组播源,G为组播组)</p>
-<blockquote>
-<p>(S,G)        #由此项指导报文转发<br>(*,G)        #只知道组播组,则根据上游创建(S,G)</p>
-</blockquote>
-</blockquote>
-<h5 id="4-RPF检查"><a href="#4-RPF检查" class="headerlink" title="4.RPF检查"></a>4.RPF检查</h5><blockquote>
-<p>防止出现组播环路<br>只有从上游接口收到数据包才使用,否则丢弃<br>借助单播路由进行RPF检查</p>
-</blockquote>
-<h3 id="IGMP"><a href="#IGMP" class="headerlink" title="IGMP"></a>IGMP</h3><ul>
-<li><p>关于IGMP</p>
-<blockquote>
-<p>采用IP封装<br>协议号为2<br>TTL通常为1</p>
-</blockquote>
-</li>
-<li><p>版本</p>
-</li>
-</ul>
-<ol>
-<li><p>IGMPv1</p>
-<blockquote>
-<p>无离开信息,采用超时机制发现无成员的组</p>
-</blockquote>
-</li>
-<li><p>IGMPv2</p>
-</li>
-</ol>
-<p>重点讲一讲GMPv2的报文类型</p>
-<blockquote>
-<p>普遍组查询</p>
-<blockquote>
-<p>查询器周期性查询组播组</p>
-</blockquote>
-<p>特定组查询</p>
-<blockquote>
-<p>查询器查询该组有无成员</p>
-</blockquote>
-<p>成员关系报告</p>
-<blockquote>
-<p>主机申请加入或者对查询报文进行应答</p>
-</blockquote>
-<p>版本1成员关系报告</p>
-<blockquote>
-<p>用于兼容IGMPv1</p>
-</blockquote>
-<p>成员离开报文</p>
-<blockquote>
-<p>主机发送该报文,宣告离开组播组</p>
-</blockquote>
-</blockquote>
-<ol start="3">
-<li>IGMPv3<blockquote>
-<p>多组播源情况下,能够明确的要求接收或不接收某特定组播源S发出的组播信息,否则都要接收</p>
-</blockquote>
-</li>
-</ol>
-<blockquote>
-<p>举个例子：<br>网络中存在S1和S2两个组播源，均向组播组G发送组播报文，User仅希望接收从组播源S1发送组播组G的信息，典型组网如下图。<br>如果主机和路由器之间应该用IGMPv1或IGMv2，User加入到某组播组G后，将同时接收到来自组播源S1和S2的组播信息。如果采用IGMPv3，主机User可以选择紧接收S1组播信息。<br><img src="http://ww1.sinaimg.cn/large/00746hGily1g1yivfqxqdj30fe09sdg8.jpg"></p>
-</blockquote>
-
-      
-
-      
-        <div class="page-reward">
-          <a href="javascript:;" class="page-reward-btn tooltip-top">
-            <div class="tooltip tooltip-east">
-            <span class="tooltip-item">
-              赏
-            </span>
-            <span class="tooltip-content">
-              <span class="tooltip-text">
-                <span class="tooltip-inner">
-                  <p class="reward-p"><i class="icon icon-quo-left"></i>支持我一下吧~<i class="icon icon-quo-right"></i></p>
-                  <div class="reward-box">
-                    
-                    <div class="reward-box-item">
-                      <img class="reward-img" src="http://ww1.sinaimg.cn/large/006vXjpTgy1g1f4il8589j30af0bwmxl.jpg">
-                      <span class="reward-type">支付宝</span>
-                    </div>
-                    
-                    
-                    <div class="reward-box-item">
-                      <img class="reward-img" src="http://ww1.sinaimg.cn/large/006vXjpTgy1g1f4iu8y3fj309m09jjrz.jpg">
-                      <span class="reward-type">微信</span>
-                    </div>
-                    
-                  </div>
-                </span>
-              </span>
-            </span>
-          </div>
-          </a>
-        </div>
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
+        <div class="article-info info-on-right">
+          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">组播</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">排序</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">IGMP</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">算法</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">PIM</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">代码</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">组成员管理协议</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">选择</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">RPF检查</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">冒泡</a>
         		</li>
       		
 		</ul>
 	</div>
 
-      
+          
 
-      
-
-      
-        
-<div class="share-btn share-icons tooltip-left">
-  <div class="tooltip tooltip-east">
-    <span class="tooltip-item">
-      <a href="javascript:;" class="share-sns share-outer">
-        <i class="icon icon-share"></i>
-      </a>
-    </span>
-    <span class="tooltip-content">
-      <div class="share-wrap">
-        <div class="share-icons">
-          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
-            <i class="icon icon-weibo"></i>
-          </a>
-          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
-            <i class="icon icon-weixin"></i>
-          </a>
-          <a class="qq share-sns" href="javascript:;" data-type="qq">
-            <i class="icon icon-qq"></i>
-          </a>
-          <a class="douban share-sns" href="javascript:;" data-type="douban">
-            <i class="icon icon-douban"></i>
-          </a>
-          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
-            <i class="icon icon-qzone"></i>
-          </a>
-          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
-            <i class="icon icon-facebook"></i>
-          </a>
-          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
-            <i class="icon icon-twitter"></i>
-          </a>
-          <a class="google share-sns" href="javascript:;" data-type="google">
-            <i class="icon icon-google"></i>
-          </a>
         </div>
-      </div>
-    </span>
-  </div>
-</div>
-
-<div class="page-modal wx-share js-wx-box">
-    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
-    <p>扫一扫，分享到微信</p>
-    <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/posts/28385/" alt="微信分享二维码">
-    </div>
-</div>
-
-<div class="mask js-mask"></div>
-      
-      <div class="clearfix"></div>
-    </div>
+        <div class="clearfix"></div>
+    </header>
   </div>
 </article>
-
-  
-<nav id="article-nav">
-  
-    <a href="/posts/27340/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          各排序算法介绍与代码实现
-        
-      </div>
-    </a>
   
   
-    <a href="/posts/22882/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Linux开机启动三种方式</div>
-      <i class="icon-circle-right"></i>
-    </a>
-  
-</nav>
-
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-  
-  
+    </div></section>
   
 
-  
-
-  
-
-  
+    
 
 
           </div>
@@ -495,9 +230,9 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: true,
+		isPost: false,
 		isArchive: false,
-		isTag: false,
+		isTag: true,
 		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,
