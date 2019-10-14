@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="前言 到目前为止，非图形化的Linux还没有回收站的命令。那么，我们如果不小心将某一个文件删掉了，那就只能数据恢复了。如果这也不行，那就等着哭吧。如果你是妹子，那我这儿有肩膀。  实现回收站功能的Shell脚本1vim del		#之所以后面没有.sh后缀，是为了让它更像一个命令。 1234567891011121314151617181920212223242526272829303132333">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-09-22T10:41:14.659Z">
+<meta property="og:updated_time" content="2019-10-14T04:22:47.032Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Shell脚本实现Linux回收站">
 <meta name="twitter:description" content="前言 到目前为止，非图形化的Linux还没有回收站的命令。那么，我们如果不小心将某一个文件删掉了，那就只能数据恢复了。如果这也不行，那就等着哭吧。如果你是妹子，那我这儿有肩膀。  实现回收站功能的Shell脚本1vim del		#之所以后面没有.sh后缀，是为了让它更像一个命令。 1234567891011121314151617181920212223242526272829303132333">
@@ -167,8 +167,7 @@
 <p>到目前为止，非图形化的Linux还没有回收站的命令。<br>那么，我们如果不小心将某一个文件删掉了，那就只能数据恢复了。如果这也不行，那就等着哭吧。<br><strong>如果你是妹子，那我这儿有肩膀。</strong></p>
 </blockquote>
 <h3 id="实现回收站功能的Shell脚本"><a href="#实现回收站功能的Shell脚本" class="headerlink" title="实现回收站功能的Shell脚本"></a>实现回收站功能的Shell脚本</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim del		#之所以后面没有.sh后缀，是为了让它更像一个命令。</span><br></pre></td></tr></table></figure>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">!/bin/bash</span></span><br><span class="line"><span class="meta">#</span><span class="bash">脚本作用:Linux的回收站</span></span><br><span class="line"><span class="meta">#</span><span class="bash">作者:郭老师</span></span><br><span class="line"><span class="meta">#</span><span class="bash">blog: https://blog.csdn.net/NetRookieX</span></span><br><span class="line"></span><br><span class="line">garbage_dir="/root/garbage"</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">若文件不存在</span></span><br><span class="line">if [ ! -e $1 ]; then</span><br><span class="line">	echo "删除失败 ‘$1’: No such file or directory"</span><br><span class="line">	exit 1</span><br><span class="line">fi</span><br><span class="line"></span><br><span class="line">get_new_filename()&#123;</span><br><span class="line">    #文件名与删除时间的分隔符</span><br><span class="line">    sep_char="_"</span><br><span class="line"></span><br><span class="line">    </span><br><span class="line"><span class="meta">	#</span><span class="bash">分离出文件名</span></span><br><span class="line">    old_filename=`echo "$1" | awk -F/ '&#123;print $NF&#125;'`</span><br><span class="line"></span><br><span class="line">    len_old_filename=$&#123;#old_filename&#125; </span><br><span class="line">    let temp=len_old_filename-1</span><br><span class="line"></span><br><span class="line">    #若参数为目录,则去除最后的/ </span><br><span class="line">    if [ $&#123;old_filename:temp&#125; = "/" ]; then</span><br><span class="line">        old_filename=$&#123;old_filename:0:$temp&#125;</span><br><span class="line">    fi  </span><br><span class="line"></span><br><span class="line">    #得到新文件名</span><br><span class="line">    cur_time=`date "+%Y%m%d%H%M%S"`</span><br><span class="line">    new_filename="$old_filename$sep_char$cur_time"</span><br><span class="line">        </span><br><span class="line">    echo $new_filename</span><br><span class="line">    return 0</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">创建垃圾桶</span></span><br><span class="line">mkdir -p $garbage_dir</span><br><span class="line"></span><br><span class="line">new_filename=`get_new_filename $1`</span><br><span class="line"></span><br><span class="line">mv $1 $garbage_dir/$new_filename</span><br></pre></td></tr></table></figure>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">chmod +x del</span><br><span class="line">mv del /usr/local/bin</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">!/bin/bash</span></span><br><span class="line"><span class="meta">#</span><span class="bash">脚本作用:Linux的回收站</span></span><br><span class="line"><span class="meta">#</span><span class="bash">版本:v1.1	支持添加多个文件,可以使用通配符</span></span><br><span class="line"><span class="meta">#</span><span class="bash">作者:郭老师</span></span><br><span class="line"><span class="meta">#</span><span class="bash">blog: https://blog.csdn.net/NetRookieX</span></span><br><span class="line"></span><br><span class="line">garbage_dir="/root/garbage"</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">创建垃圾桶</span></span><br><span class="line">mkdir -p $garbage_dir</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">函数作用:得到新文件名</span></span><br><span class="line"><span class="meta">#</span><span class="bash">输入:旧文件名</span></span><br><span class="line"><span class="meta">#</span><span class="bash">输出:新文件名</span></span><br><span class="line">get_new_filename()&#123;</span><br><span class="line">    #文件名与删除时间的分隔符</span><br><span class="line">    sep_char="_"</span><br><span class="line"></span><br><span class="line">    </span><br><span class="line"><span class="meta">	#</span><span class="bash">分离出文件名</span></span><br><span class="line">    old_filename=`echo "$1" | awk -F/ '&#123;print $NF&#125;'`</span><br><span class="line"></span><br><span class="line">    len_old_filename=$&#123;#old_filename&#125; </span><br><span class="line">    let temp=len_old_filename-1</span><br><span class="line"></span><br><span class="line">    #若参数为目录,则去除最后的/ </span><br><span class="line">    if [ $&#123;old_filename:temp&#125; = "/" ]; then</span><br><span class="line">        old_filename=$&#123;old_filename:0:$temp&#125;</span><br><span class="line">    fi  </span><br><span class="line"></span><br><span class="line">    #得到新文件名</span><br><span class="line">    cur_time=`date "+%Y%m%d%H%M%S"`</span><br><span class="line">    new_filename="$old_filename$sep_char$cur_time"</span><br><span class="line">        </span><br><span class="line">    echo $new_filename</span><br><span class="line">    return 0</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">函数作用:将文件移动到gargabe目录中</span></span><br><span class="line"><span class="meta">#</span><span class="bash">输入:文件名</span></span><br><span class="line">mv_to_garbage()&#123;</span><br><span class="line"><span class="meta">	#</span><span class="bash">若文件不存在</span></span><br><span class="line">	if [ ! -e $1 ]; then</span><br><span class="line">    	echo "删除失败 ‘$1’: No such file or directory"</span><br><span class="line">    	exit 1</span><br><span class="line">	fi</span><br><span class="line"></span><br><span class="line">	new_filename=`get_new_filename $1`</span><br><span class="line"></span><br><span class="line">	mv $1 $garbage_dir/$new_filename</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">for i in $@</span><br><span class="line">do</span><br><span class="line">	mv_to_garbage $i</span><br><span class="line">done</span><br></pre></td></tr></table></figure>
 <h3 id="如何使用？"><a href="#如何使用？" class="headerlink" title="如何使用？"></a>如何使用？</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">del 123.txt		#123.txt是测试文件</span><br></pre></td></tr></table></figure>
 <blockquote>
 <p>运行之后，你就会发现，在/root/目录下多了一个garbage的目录，里面包含了你删除的文件，而且文件名中还带有删除的日期。</p>
@@ -308,6 +307,15 @@
 
   
 <nav id="article-nav">
+  
+    <a href="/posts/9482/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          动态规划法-n台阶问题
+        
+      </div>
+    </a>
   
   
     <a href="/posts/29889/" id="article-nav-older" class="article-nav-link-wrap">
@@ -453,26 +461,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">HTTP</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">长连接</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">短连接</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">网络调优</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">无状态</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Docker</a>
               </li>
              
@@ -510,6 +498,26 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">科学上网</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">HTTP</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">长连接</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">短连接</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">网络调优</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">无状态</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -577,34 +585,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">audit</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">使用</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">安全审计</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Markdown</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">代码</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">折叠</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">收起</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Swap</a>
               </li>
              
@@ -633,11 +613,39 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Markdown</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">代码</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">折叠</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">收起</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Privoxy</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">代理</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">audit</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">使用</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">安全审计</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -661,6 +669,26 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Shell</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">三剑客</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">sed</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">文本处理</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">替换</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">python</a>
               </li>
              
@@ -674,10 +702,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">升级</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Shell</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -709,19 +733,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">三剑客</a>
+                <a href="javascript:void(0)" class="js-tag color3">windows</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">sed</a>
+                <a href="javascript:void(0)" class="js-tag color1">linux</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">文本处理</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">替换</a>
+                <a href="javascript:void(0)" class="js-tag color4">lua</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -738,18 +758,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">ACK</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">windows</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">linux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">lua</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -793,6 +801,26 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">动态规划</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">n台阶</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">1步</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">2步</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">ansible</a>
               </li>
              
@@ -829,15 +857,23 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">算法</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">选择</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">冒泡</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">top</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">详解</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">命令</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -854,34 +890,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">SHA</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">top</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">详解</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">命令</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">减少</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">逻辑卷</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">容量</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">lvreduce</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -905,7 +913,23 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">素数数</a>
+                <a href="javascript:void(0)" class="js-tag color3">减少</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">逻辑卷</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">容量</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">lvreduce</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">回文数</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -914,10 +938,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">实现</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">回文数</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -941,6 +961,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">素数数</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Qos</a>
               </li>
              
@@ -961,22 +985,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">路径</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">搜索</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">A*</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">A-star</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">组播</a>
               </li>
              
@@ -994,6 +1002,22 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">RPF检查</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">路径</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">搜索</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">A*</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">A-star</a>
               </li>
              
               <li class="article-tag-list-item">
